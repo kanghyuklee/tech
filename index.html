@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="eyebrow">THE DEVELOPER'S NOTEBOOK</p>
+  <h1>오늘 배운 것,<br><em>내일의 기본기.</em></h1>
+  <p class="intro">코드를 이해하고, 직접 확인하고, 기록합니다.<br>QA · AI · 프롬프트 · 데이터베이스 · 네트워크 · 신기술</p>
+</section>
+<section aria-labelledby="notes"><div class="section-title"><h2 id="notes">개발 노트</h2><span>{{ site.posts | size }}개의 기록</span></div>
+{% for post in site.posts %}
+  <a class="post-row" href="{{ post.url | relative_url }}"><time>{{ post.date | date: '%Y.%m.%d' }}</time><div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | strip_html | truncate: 120 | escape }}</p></div><span aria-hidden="true">↗</span></a>
+{% else %}
+  <div class="empty"><h3>첫 번째 노트를 준비하고 있습니다.</h3><p>검토를 마친 글부터 이곳에 차곡차곡 담겠습니다.</p></div>
+{% endfor %}
+</section>

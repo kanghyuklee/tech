@@ -1,0 +1,70 @@
+name: Daily AI draft
+on:
+  schedule:
+    - cron: '0 23 * * *' # 08:00 Asia/Seoul; GitHub may delay scheduled runs
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: '원하는 주제 (비우면 정기 주제)'
+        required: false
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: daily-draft
+  cancel-in-progress: false
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Select daily branch
+        id: day
+        env:
+          TOPIC: ${{ inputs.topic }}
+        run: |
+          day=$(TZ=Asia/Seoul date +%F)
+          id=daily-note
+          if [ -n "$TOPIC" ]; then id="custom-$GITHUB_RUN_ID"; fi
+          echo "date=$day" >> "$GITHUB_OUTPUT"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "branch=draft/$day-$id" >> "$GITHUB_OUTPUT"
+      - name: Skip existing draft (including closed PRs)
+        id: existing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.day.outputs.branch }}
+        run: |
+          count=$(gh pr list --state all --head "$BRANCH" --json number --jq 'length')
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+      - name: Generate article
+        if: steps.existing.outputs.count == '0'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          DRAFT_TOPIC: ${{ inputs.topic }}
+          DRAFT_ID: ${{ steps.day.outputs.id }}
+        run: npm run draft
+      - name: Test generator
+        run: npm test
+      - name: Open review PR
+        if: steps.existing.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DAY: ${{ steps.day.outputs.date }}
+          BRANCH: ${{ steps.day.outputs.branch }}
+          BASE: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$BRANCH"
+          git add _posts/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "draft: $DAY development note"
+          git push origin "$BRANCH"
+          gh pr create --base "$BASE" --head "$BRANCH" --title "[초안 검토] $DAY 개발 노트" --body-file .github/draft-review.md

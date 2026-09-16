@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
+  <header><a class="brand" href="{{ '/' | relative_url }}"><span class="mark">/</span> {{ site.title | escape }}</a><span class="label">LEARN · REVIEW · SHARE</span></header>
+  <main id="content">{{ content }}</main>
+  <footer>작은 배움을 꾸준한 기록으로. <span>AI 초안 · 사람의 검토</span></footer>
+</body>
+</html>

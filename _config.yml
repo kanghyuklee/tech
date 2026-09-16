@@ -1,0 +1,16 @@
+title: Dev Notes
+description: 매일 배우고, 직접 검토해 기록하는 개발 노트
+lang: ko
+timezone: Asia/Seoul
+permalink: /posts/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude: [scripts, tests, README.md, package.json, blog.config.json]
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      render_with_liquid: false

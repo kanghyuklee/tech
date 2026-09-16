@@ -1,0 +1,10 @@
+{
+  "name": "reviewed-dev-notes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "draft": "node scripts/draft.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=22" }
+}

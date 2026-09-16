@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<article>
+  <a class="back" href="{{ '/' | relative_url }}">← 모든 글</a>
+  <p class="eyebrow">{{ page.date | date: '%Y.%m.%d' }}</p>
+  <h1>{{ page.title | escape }}</h1>
+  <div class="prose">{{ content }}</div>
+</article>

@@ -1,0 +1,6 @@
+{
+  "model": "gpt-4.1-mini",
+  "topics": ["QA engineering: 테스트 자동화, 품질 전략, 성능 테스트", "AI tech: 모델, 에이전트, 평가와 실무 적용", "프롬프트 활용 방안: 업무별 예제와 개선 방법", "Database: 쿼리, 인덱스, 트랜잭션과 운영", "Network resource: 대역폭, 연결, DNS, 부하와 관측", "신기술: 공식 발표와 실제 활용 가치"],
+  "audience": "주니어 개발자",
+  "language": "한국어"
+}
