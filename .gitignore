@@ -3,3 +3,4 @@ _site/
 .env
 .env.*
 node_modules/
+.private/

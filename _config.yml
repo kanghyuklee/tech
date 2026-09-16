@@ -6,7 +6,7 @@ permalink: /posts/:title/
 markdown: kramdown
 kramdown:
   input: GFM
-exclude: [scripts, tests, README.md, package.json, blog.config.json]
+exclude: [scripts, tests, README.md, package.json, blog.config.json, .private]
 defaults:
   - scope:
       path: ""
