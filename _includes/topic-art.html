@@ -1,0 +1,18 @@
+<svg class="topic-art" viewBox="0 0 260 180" fill="none" aria-hidden="true">
+  <path d="M0 55 220 180M40 0 260 125M0 125 220 0M40 180 260 55" stroke="#eae6f8"/>
+  <path d="m55 130 75-43 75 43-75 43Z" fill="#e9dfff" stroke="#c5a5ff"/>
+  <path d="m72 116 58-34 58 34v14l-58 34-58-34Z" fill="#c8acff" stroke="#aa80f3"/>
+  <path d="m72 116 58-34 58 34-58 34Z" fill="#f7f2ff" stroke="#aa80f3"/>
+  <rect x="87" y="28" width="86" height="92" rx="23" fill="#faf8ff" stroke="#b78aff"/>
+  <rect x="95" y="36" width="70" height="76" rx="17" fill="#eee5ff"/>
+  <g stroke="#8547ed" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  {% case include.icon %}
+  {% when 'check' %}<path d="m111 74 13 13 26-29"/><path d="M113 100h34" stroke-width="2"/>
+  {% when 'brain' %}<path d="M130 55c-18-16-31 8-19 16-15 12 0 29 13 21l6 7 6-7c13 8 28-9 13-21 12-8-1-32-19-16Z"/><path d="M130 55v44m-15-25 15 8 14-9" stroke-width="2"/>
+  {% when 'prompt' %}<path d="m111 61 14 13-14 13m23 2h16"/>
+  {% when 'database' %}<ellipse cx="130" cy="58" rx="22" ry="9"/><path d="M108 58v34c0 12 44 12 44 0V58m-44 17c0 12 44 12 44 0"/>
+  {% when 'network' %}<circle cx="130" cy="57" r="9"/><circle cx="111" cy="92" r="9"/><circle cx="149" cy="92" r="9"/><path d="m126 65-11 19m19-19 11 19m-25 8h20"/>
+  {% else %}<path d="M130 48c-15 13-18 28-12 42h24c6-14 3-29-12-42Z"/><circle cx="130" cy="72" r="6"/><path d="m118 80-10 15 12-3m22-12 10 15-12-3m-14 6 4 10 4-10"/>
+  {% endcase %}
+  </g>
+</svg>

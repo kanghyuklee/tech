@@ -59,7 +59,9 @@ export async function main() {
   if (!data.output?.some(item => item.type === 'web_search_call' && item.status === 'completed')) throw new Error('No completed web research; refusing to create an unsourced draft');
   const { title, body } = extractArticle(data);
   await mkdir('_posts', { recursive: true });
-  await writeFile(target, `---\ntitle: ${JSON.stringify(title)}\ndate: ${date} 09:00:00 +0900\n---\n\n${body}\n`, { flag: 'wx' });
+  const categories = ['QA Engineering', 'AI Tech', '프롬프트', 'Database', 'Network', '신기술'];
+  const category = customTopic ? '신기술' : categories[config.topics.indexOf(topic)] || '신기술';
+  await writeFile(target, `---\ntitle: ${JSON.stringify(title)}\ncategory: ${JSON.stringify(category)}\ndate: ${date} 09:00:00 +0900\n---\n\n${body}\n`, { flag: 'wx' });
   console.log(`Created ${target}`);
 }
 

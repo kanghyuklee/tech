@@ -1,0 +1,18 @@
+- name: QA Engineering
+  icon: check
+  description: 더 믿을 수 있는 소프트웨어를 만드는 방법
+- name: AI Tech
+  icon: brain
+  description: AI 모델과 에이전트를 실무에 연결하기
+- name: 프롬프트
+  icon: prompt
+  description: 더 나은 질문으로 넓히는 업무의 가능성
+- name: Database
+  icon: database
+  description: 데이터의 구조부터 안정적인 운영까지
+- name: Network
+  icon: network
+  description: 연결과 리소스를 이해하는 네트워크 노트
+- name: 신기술
+  icon: rocket
+  description: 새로운 기술의 원리와 쓸모를 탐색하기

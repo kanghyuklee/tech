@@ -2,14 +2,31 @@
 layout: default
 ---
 <section class="hero">
-  <p class="eyebrow">THE DEVELOPER'S NOTEBOOK</p>
-  <h1>오늘 배운 것,<br><em>내일의 기본기.</em></h1>
-  <p class="intro">코드를 이해하고, 직접 확인하고, 기록합니다.<br>QA · AI · 프롬프트 · 데이터베이스 · 네트워크 · 신기술</p>
+  <h1>기술을 이해하는 시간<br>더 나은 개발을 위한 기록</h1>
+  <p class="intro">QA부터 AI까지, 실무에 연결되는 기술 이야기를 만나보세요.</p>
 </section>
-<section aria-labelledby="notes"><div class="section-title"><h2 id="notes">개발 노트</h2><span>{{ site.posts | size }}개의 기록</span></div>
-{% for post in site.posts %}
-  <a class="post-row" href="{{ post.url | relative_url }}"><time>{{ post.date | date: '%Y.%m.%d' }}</time><div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | strip_html | truncate: 120 | escape }}</p></div><span aria-hidden="true">↗</span></a>
-{% else %}
-  <div class="empty"><h3>첫 번째 노트를 준비하고 있습니다.</h3><p>검토를 마친 글부터 이곳에 차곡차곡 담겠습니다.</p></div>
+<nav class="filters" aria-label="글 주제 선택">
+  <button type="button" data-filter="all" aria-pressed="true">전체</button>
+  {% for topic in site.data.topics %}<button type="button" data-filter="{{ topic.name }}" aria-pressed="false">{{ topic.name }}</button>{% endfor %}
+</nav>
+<aside class="feature-banner">
+  <div><p>작은 배움이 쌓여, 단단한 기본기로</p><h2>오늘의 발견을 내일의 실력으로</h2><span>직접 살펴보고 오래 꺼내 읽는 개발 노트</span></div>
+  {% include topic-art.html icon='prompt' %}
+</aside>
+<section class="topic-grid" aria-label="주제 둘러보기">
+{% for topic in site.data.topics %}
+  <button type="button" class="topic-card" data-filter="{{ topic.name }}" aria-pressed="false">
+    {% include topic-art.html icon=topic.icon %}
+    <span class="card-copy"><span class="badge">TECH NOTES</span><strong>{{ topic.name }}</strong><span>{{ topic.description }}</span></span>
+  </button>
 {% endfor %}
 </section>
+<section aria-labelledby="notes" class="notes-section"><div class="section-title"><h2 id="notes">최신 기술 노트</h2><span id="result-count" role="status">{{ site.posts | size }}개의 기록</span></div>
+<div class="post-grid">
+{% for post in site.posts %}
+  <a class="post-card" data-category="{{ post.category | default: '신기술' | escape }}" href="{{ post.url | relative_url }}"><span class="badge">{{ post.category | default: '신기술' | escape }}</span><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | strip_html | truncate: 100 | escape }}</p><time>{{ post.date | date: '%Y.%m.%d' }}</time><span class="read-more">노트 읽기 ↗</span></a>
+{% endfor %}
+</div>
+<div id="empty-state" class="empty" {% if site.posts.size > 0 %}hidden{% endif %}><h3>첫 번째 노트를 준비하고 있습니다.</h3><p>검토를 마친 글부터 이곳에 차곡차곡 담겠습니다.</p></div>
+</section>
+<script src="{{ '/assets/filter.js' | relative_url }}" defer></script>
