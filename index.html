@@ -2,7 +2,7 @@
 layout: default
 ---
 <section class="hero">
-  <h1>기술을 이해하는 시간<br>더 나은 개발을 위한 기록</h1>
+  <h1>기술을 이해하는 시간<br>더 나를 위한 기록</h1>
   <p class="intro">QA부터 AI까지, 실무에 연결되는 기술 이야기를 만나보세요.</p>
 </section>
 <nav class="filters" aria-label="글 주제 선택">
@@ -10,7 +10,7 @@ layout: default
   {% for topic in site.data.topics %}<button type="button" data-filter="{{ topic.name }}" aria-pressed="false">{{ topic.name }}</button>{% endfor %}
 </nav>
 <aside class="feature-banner">
-  <div><p>작은 배움이 쌓여, 단단한 기본기로</p><h2>오늘의 발견을 내일의 실력으로</h2><span>직접 살펴보고 오래 꺼내 읽는 개발 노트</span></div>
+  <div><p>단단해지기</p><h2>오늘의 발견을 내일의 실력으로</h2><span>직접 살펴보고 계속 꺼내 읽는 노트</span></div>
   {% include topic-art.html icon='prompt' %}
 </aside>
 <section class="topic-grid" aria-label="주제 둘러보기">
