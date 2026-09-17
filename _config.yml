@@ -2,7 +2,7 @@ title: Dev Notes
 description: 매일 배우고, 직접 검토해 기록하는 개발 노트
 lang: ko
 timezone: Asia/Seoul
-permalink: /posts/:title/
+permalink: /posts/:year/:month/:day/:title/
 markdown: kramdown
 kramdown:
   input: GFM
